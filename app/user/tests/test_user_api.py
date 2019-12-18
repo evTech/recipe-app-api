@@ -25,9 +25,9 @@ class PublicUserApiTests(TestCase):
         """Test creating user with valid payload is successful """
 
         payload = {
-            'email': 'test@vaughen.com',
-            'password': 'testpass',
-            'name': 'test name'
+            'email': 'test566@vaughen.com',
+            'password': 'testpass432',
+            'name': 'test566  name'
         }
 
         res = self.client.post(CREATE_USER_URL, payload)
@@ -44,7 +44,7 @@ class PublicUserApiTests(TestCase):
 
         res = self.client.post(CREATE_USER_URL, payload)
 
-        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_password_too_short(self):
         """Test that password must be more then 5 chars """
@@ -53,7 +53,7 @@ class PublicUserApiTests(TestCase):
 
         res = self.client.post(CREATE_USER_URL, payload)
 
-        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
         user_exisits = get_user_model().objects.filter(
             email=payload['email']
         ).exists()
