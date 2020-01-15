@@ -37,6 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
+
 class Tag(models.Model):
     """Tag to be used for a recipe"""
     user = models.ForeignKey(
